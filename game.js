@@ -45,10 +45,18 @@ btn.addEventListener("click", () => {
 });
 
 let cavablar = "";
-let xal = 0;
+let xal = 20;
 let nextQuestion = 0;
 
 function startGame(q_num) {
+  if (nextQuestion == suallar.length) {
+    document.querySelector("#point").innerHTML = xal + "%";
+    document.querySelector(".container").style.display = "none";
+    document.querySelector(".start_title").style.display = "block";
+    document.querySelector(".startButton").style.display = "block";
+    return;
+  }
+
   document.querySelector("#questionText").innerHTML = suallar[q_num].question;
   document.querySelector("#var_a").innerHTML = suallar[q_num].var_a;
   document.querySelector("#var_b").innerHTML = suallar[q_num].var_b;
@@ -60,6 +68,14 @@ function changeGame(e) {
   userChoose = e.key;
   if (["a", "b", "c"].indexOf(userChoose) === -1) {
     alert("Please choose a, b, c letters");
+    return;
+  }
+  if (userChoose === cavablar) {
+    novbetiSual();
+    xal += 20;
+  } else {
+    novbetiSual();
+    xal += 0;
   }
 }
 
