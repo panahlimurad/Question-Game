@@ -42,15 +42,25 @@ btn.addEventListener("click", () => {
   document.querySelector(".start_title").style.display = "none";
   document.querySelector(".startButton").style.display = "none";
   startGame(0);
+  endGame();
 });
 
+function endGame() {
+  document.querySelector(".container").style.display = "block";
+  document.querySelector(".start_title").style.display = "none";
+  document.querySelector(".startButton").style.display = "none";
+  cavablar = "";
+  xal = 0;
+  nextQuestion = 0;
+  startGame(0);
+}
+
 let cavablar = "";
-let xal = 20;
+let xal = 0;
 let nextQuestion = 0;
 
 function startGame(q_num) {
-  if (nextQuestion == suallar.length) {
-    document.querySelector("#point").innerHTML = xal + "%";
+  if (nextQuestion === suallar.length) {
     document.querySelector(".container").style.display = "none";
     document.querySelector(".start_title").style.display = "block";
     document.querySelector(".startButton").style.display = "block";
@@ -73,6 +83,7 @@ function changeGame(e) {
   if (userChoose === cavablar) {
     novbetiSual();
     xal += 20;
+    document.querySelector("#point").innerHTML = xal;
   } else {
     novbetiSual();
     xal += 0;
